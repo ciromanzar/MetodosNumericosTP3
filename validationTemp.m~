@@ -1,0 +1,20 @@
+function MSE = validationTemp(As,bs)
+    [x1, anios] = size(As);
+
+    MSerrores = [];
+    for i = 1:(anios-5)
+        A = [];
+        b = [];
+        for j = 1:5
+            A = [A ; cell2mat(As(i+j-1))];
+            b = [b ; cell2mat(bs(i+j-1))];
+        end
+
+        
+        x = lsqlin(TrainAi,Trainbi);
+        bRes = TestAi*x;
+        err = mean((bRes-Testbi).^2);
+        MSerrores = [MSerrores err];
+        MSE = mean(MSerrores);
+    end
+end

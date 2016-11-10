@@ -8,37 +8,24 @@ years = range(inicio,fin+1)
 
 
 #Guardar las estadisticas de equipos por anio
-f = open('./estadisticasEquipos/equipos2.txt', 'r')
-
-output = open('./estadisticasEquipos/equipos.txt', 'w')
-
-
-file = []
-
-for line in f:
-	line = line.rstrip(" \n")
-	line = line.split(",")
-	if line[0] != 'Rk':
-		file.append(line)
+matriz = []
+for i in years:
+	vectori = []
+	f = open('./estadisticasEquipos/salida'+str(i), 'r')
+	for line in f:
+		if(line[0] != 'R'):
+			line = line.rstrip(" \n")
+			vectori.append(line.split(","))
+	matriz.append(vectori)
+	f.close()
 
 i = 0
 anio = inicio
-while i < len(file):
-	j = i
-	yeari = []
-	#print file[i]
-	#print file[j][1]
-	yeari.append(file[i])
-	j += 1
-	while j < len(file) and (file[i][0] < file[j][0]):
-		#print file[j][1]
-		yeari.append(file[j])
-		j += 1
 
-	#print yeari
+for yeari in matriz:
 
-	anio += 1
-	
+	output = open('./estadisticasEquipos/equipos'+str(anio)+'.txt', 'w')
+
 	# ordeno yeari por abreviatura
 	for k in range(len(yeari)):
 		numeroEquipo = '0'
@@ -47,8 +34,6 @@ while i < len(file):
 		for line in equiposfile:
 			line2 = line.rstrip(" \n")
 			line2 = line2.split(",")
-			#print line2
-			#print nombreEquipo
 
 			if line2[1] == nombreEquipo:
 				numeroEquipo = line2[0]
@@ -62,8 +47,9 @@ while i < len(file):
 			output.write(str(team[l+2]) + ' ')
 		output.write('\n')
 
-	i = j
+	anio += 1
 
-output.close()
+	output.close()
+
 f.close()
 paramsfile.close()

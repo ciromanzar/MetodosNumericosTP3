@@ -10,11 +10,11 @@ m = range(inicio,fin+1)
 for i in m: 
 	l = []
 	with open('./stats/winrate/leagues_NBA_'+ str(i) +'_winrate.csv', 'r') as f:
-	  for line in f:
-	    line = line.strip()
-	    if len(line) > 0:
-	      l.append(map(float, line.split(',')))
+		for line in f:
+			line = line.strip()
+		   	if len(line) > 0:
+		    	l.append(float(line.rstrip(" \n")))
 	for a in range(len(l)):
-		output.write(str(l[a][1]))
+		output.write(str(l[a]))
 		output.write('\n')
 		#print "\n"

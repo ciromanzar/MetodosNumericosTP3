@@ -27,6 +27,11 @@ inicio=${intervalo[0]}
 final=${intervalo[1]}
 
 for a in $(seq $inicio $final); do
+
+	b="$a"
+	salida2="$salida$b"
+	rm -f $salida2
+
 	stats=$(find $statsDir -maxdepth 1 -name "*$a*")
 	# Remover espacios en blanco
 	sed -i 's/ //g' $stats $stats
@@ -35,18 +40,17 @@ for a in $(seq $inicio $final); do
 	# Si un valor esta vacio agregar 0
 	sed -i 's/,,/,0.0,/g' $stats $stats
 	
-	#cat $stats | while read line
-	tail -n +3 $stats | while read line
+	cat $stats | while read line
 	do
 		if [ "$line" != "" ]; then
 			value=$(echo $line | cut -d',' -f1)
-			echo -n $value >> $salida
+			echo -n $value >> $salida2
 			for e in "${!estadisticas[@]}"; do
-				echo -n ' ' >> $salida
+				echo -n ',' >> $salida2
 				value=$(echo $line | cut -d',' -f"${estadisticas[$e]}")
-				echo -n $value >> $salida
+				echo -n $value >> $salida2
 			done
-			echo " " >> $salida
+			echo " " >> $salida2
 		fi
 	done
 done

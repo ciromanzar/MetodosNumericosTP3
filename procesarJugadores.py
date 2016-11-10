@@ -11,7 +11,7 @@ years = range(inicio,fin+1)
 matriz = []
 for i in years:
 	vectori = []
-	f = open('./estadisticasJugadores/jugadores'+str(i), 'r')
+	f = open('./estadisticasJugadores/salida'+str(i), 'r')
 	for line in f:
 		if(line[0] != 'R'):
 			line = line.rstrip(" \n")
@@ -25,26 +25,13 @@ for i in years:
 for vector in matriz:
 	vector.sort(key= lambda jugador: jugador[1])
 
-# devuelve el RK segun el nombre del equipo. Buscar en stats/abreviaturas
-# def dameRK(team, year):
-# 	f = open('./stats/abreviaturas/abreviaturas_'+str(year)+'.txt', 'r')
-# 	rk = 0
-# 	for line in f:
-# 		line = line.rstrip(" \n")
-# 		line = line.split(",")
-# 		print line
-# 		if line[1] == team:
-# 			rk = line[0]
-# 	#print rk
-# 	return rk
 
 #Saco promedios ponderados
-output = open('./estadisticasJugadores/jugadores.txt', 'w')
+
 
 anio = inicio
 for vector in matriz:
-
-	#resultados = []
+	output = open('./estadisticasJugadores/equipos'+str(anio)+'.txt', 'w')
 
 	i = 0
 	while i < len(vector):
@@ -67,17 +54,13 @@ for vector in matriz:
 			for k in range(len(acumEquipo)-2):
 				acumEquipo[k+2] = acumEquipo[k+2] / acumEquipo[1]
 			
-			#resultados.append(acumEquipo)
 			for l in range(len(acumEquipo)-2):
 				output.write(str(acumEquipo[l+2]) + ' ')
 			output.write('\n')
 		else:
 			i += 1
 
-	#resultados.sort(key=lambda RK: RK[0])
 	anio += 1
-	#print resultados
+	output.close()
 
-
-output.close()
 g.close()
