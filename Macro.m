@@ -1,11 +1,11 @@
 %% TS%,ORB%,DRB%,AST%,STL%,BLK% 
 %%
 
-[Aj1,bj1] = jugadores(1,1,1,1,1,1); % lineal
-[Aj2,bj2] = jugadores(1,2,1,2,2,1); % prioridad posesion 
-[Aj3,bj3] = jugadores(0.5,1,2,1,2,2); % prioridad defensa 
-[Aj4,bj4] = jugadores(2,1,1,2,1,0.5); % prioridad puntos
-[Aj5,bj5] = jugadores(2,2,1,2,2,0.5); % prioridad puntos y posesion
+[Aj1,bj1] = metrica1(); 
+[Aj2,bj2] = metrica2(); 
+[Aj3,bj3] = metrica3();  
+[Aj4,bj4] = metricalineal();
+[Aj5,bj5] = metricaPeor(); 
 
 %%
 
