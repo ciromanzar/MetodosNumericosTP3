@@ -16,7 +16,7 @@ for line in tfile:
 tfile.close()		
 
 stat=[]
-statfile = open('./DefStat', 'r')
+statfile = open('../metricaLinealJugadoresCoeficientes', 'r')
 for line in statfile:
 	stat.append(line.rstrip(" \n"))
 statfile.close()	
@@ -43,15 +43,17 @@ for i in range(len(ffactorNoAb)):
 	#print ffactorNoAb[poswr[i]] 
 	ffactor[poswr[i]] = ffactorNoAb[i]		
 
-# fig, ax = plt.subplots()
-# ax.scatter(per, wrate)
-# plt.ylabel('Win Rate')
-# plt.xlabel('PER')
-# plt.title("Dispersograma PER-WR")
-# for i, txt in enumerate(teams):
-#     ax.annotate(txt, (per[i],wrate[i]))
+'''
+fig, ax = plt.subplots()
+ax.scatter(per, wrate)
+plt.ylabel('Win Rate')
+plt.xlabel('PER')
+plt.title("Dispersograma PER-WR")
+for i, txt in enumerate(teams):
+    ax.annotate(txt, (per[i],wrate[i]))
 
-# plt.show()
+plt.show()
+'''
 
 # fig, ax = plt.subplots()
 # ax.scatter(ffactor, wrate)
@@ -72,3 +74,15 @@ for i, txt in enumerate(teams):
     ax.annotate(txt, (stat[i],wrate[i]))
 
 plt.show()
+
+'''
+fig, ax = plt.subplots()
+ax.scatter(stat, per)
+plt.ylabel('PER')
+plt.xlabel('Stat')
+plt.title("Dispersograma Stat-PER")
+for i, txt in enumerate(teams):
+    ax.annotate(txt, (stat[i],per[i]))
+
+plt.show()
+'''

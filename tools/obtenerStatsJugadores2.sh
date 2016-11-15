@@ -18,7 +18,7 @@ salida=../estadisticasJugadores/$param
 rm -f $salida
 
 paramsDir=../stats/params.txt
-statsDir=../stats/advanced
+statsDir=../stats/totals
 
 intervalo=$(head -n 1 $paramsDir)
 IFS=' ' read -r -a estadisticas <<< $(sed '3q;d' $paramsDir)
